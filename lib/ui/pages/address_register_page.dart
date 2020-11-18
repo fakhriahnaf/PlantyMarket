@@ -160,7 +160,7 @@ class _AddressRegisterPageState extends State<AddressRegisterPage> {
               size:45,
               color:mainColor,
             ) : RaisedButton(onPressed: () {
-              Get.to(SignUpPage());
+              Get.to(MainPage());
             }, 
             elevation :0,
             shape: RoundedRectangleBorder(
