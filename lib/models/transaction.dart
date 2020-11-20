@@ -56,7 +56,7 @@ List<Transaction> mockTransaction = [
     quantity: 10,
     total: (mockItems[1].price * 10 * 1.1).round() + 50000,
     dateTime: DateTime.now(),
-    status: TransactionStatus.delivered,
+    status: TransactionStatus.on_delivered,
     users: mockUsers,
   ),
   Transaction(

@@ -1,8 +1,5 @@
 part of 'widgets.dart';
 
-
-
-
 class ListItem extends StatelessWidget {
   final Items items;
   final double itemWidth;

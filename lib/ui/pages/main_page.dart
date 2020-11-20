@@ -33,12 +33,15 @@ class _MainPageState extends State<MainPage> {
                 });
               },
             children: [
+              ///ITEM PAGE 
               Center(
                 child: ItemPage(),
               ),
+              ///PAGE ORDER
               Center(
-                child: Text("Order"),
+                child: OrderHistoryPage()
               ),
+              ///PAGE PROFILE
               Center(
                 child: Text("Profile"),
               ), 

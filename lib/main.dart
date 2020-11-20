@@ -1,6 +1,6 @@
+//import 'package:PlantyMarket/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'ui/pages/pages.dart';
 
 void main() {
@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignInPage(),
+      home: MainPage(), //PaymentPage(transaction: Transaction(items : mockItems[0], users: mockUsers, quantity: 2)),
+      //SignInPage(),
     );
   }
 }

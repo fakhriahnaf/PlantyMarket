@@ -7,8 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:PlantyMarket/shared/shared.dart';
 import 'package:get/get.dart';
-
-
+import 'dart:math';
+import 'package:intl/intl.dart';
 
 part "general_page.dart";
 part 'sign_in_page.dart';
@@ -17,3 +17,8 @@ part 'address_register_page.dart';
 part 'main_page.dart';
 part 'item_page.dart';
 part 'item_detail_page.dart';
+part 'payment_page.dart';
+part 'illustration_page.dart';
+part 'success_order_page.dart';
+part 'success_signUp_page.dart';
+part 'order_history_page.dart';
