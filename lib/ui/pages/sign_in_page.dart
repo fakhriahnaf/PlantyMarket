@@ -70,10 +70,35 @@ class _SignInPageState extends State<SignInPage> {
             margin: EdgeInsets.only(top:24),
             height: 45,
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-            child: isLoading ? SpinKitFadingCircle(
-              size:45,
-              color:mainColor,
-            ) : RaisedButton(onPressed: () {}, 
+            child: isLoading ? loadingIndicator
+            : RaisedButton(
+              onPressed: () async {
+                setState(() {
+                  isLoading = true;
+                });
+                 // ignore: deprecated_member_use
+                 await context.bloc<UserCubit>().signIn(
+                          emailController.text, passwordController.text);
+                      // ignore: deprecated_member_use
+                      UserState state = context.bloc<UserCubit>().state;
+                  if(state is UserLoaded) {
+                    // ignore: deprecated_member_use
+                    context.bloc<ItemCubit>().getItem();
+                    // ignore: deprecated_member_use
+                    context.bloc<TransactionCubit>().getTransactions();
+                  } else {
+                    Get.snackbar(" ", " ", 
+                    backgroundColor: "D9435SE".toColor(),
+                    icon: Icon(MdiIcons.closeCircleMultipleOutline, color: Colors.white),
+                    titleText: Text("sign In Failed",style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600)),
+                    messageText: Text((state as UserLoadingFailed).message,
+                      style: GoogleFonts.poppins(color: Colors.white),)
+                    );
+                    setState(() {
+                      isLoading = false;
+                    });
+                  }
+              }, 
             elevation :0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8)),

@@ -1,14 +1,19 @@
-import 'package:PlantyMarket/models/models.dart';
-import 'package:PlantyMarket/ui/widget/widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:supercharged/supercharged.dart';
-import 'package:PlantyMarket/shared/shared.dart';
-import 'package:get/get.dart';
 import 'dart:math';
+
+import 'package:PlantyMarket/cubit/transaction_cubit.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:PlantyMarket/cubit/cubit.dart';
+import 'package:PlantyMarket/models/models.dart';
+import 'package:PlantyMarket/shared/shared.dart';
+import 'package:PlantyMarket/ui/widget/widgets.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:supercharged/supercharged.dart';
+import 'package:get/get.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part "general_page.dart";
 part 'sign_in_page.dart';

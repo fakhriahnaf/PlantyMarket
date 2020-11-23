@@ -25,6 +25,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.0
   equatable: ^1.2.5
+  flutter_bloc: ^6.1.1
+  # flutter_bloc_devtools: ^0.1.1
   flutter_spinkit: ^4.1.2+1
   get: ^3.17.1
   google_fonts: ^1.1.1

@@ -1,6 +1,6 @@
 part of 'models.dart';
 
-
+enum ItemType { new_item, recommended, popular}
 class Items extends Equatable {
   final int id;
   final String picturePath;
@@ -9,6 +9,7 @@ class Items extends Equatable {
   final String spesification;
   final int price;
   final double rate;
+  final List<ItemType> types;
 
   Items(
     {
@@ -19,6 +20,7 @@ class Items extends Equatable {
       this.spesification,
       this.price,
       this.rate,
+      this.types = const []
     }
   );
 
@@ -36,6 +38,7 @@ List<Items> mockItems = [
     spesification: "tinggi batang 12cm, pot cantik",
     price: 15000,
     rate: 4.2,
+    types: [ItemType.new_item, ItemType.recommended, ItemType.popular]
   ),
   Items(
     id: 2,
@@ -45,6 +48,7 @@ List<Items> mockItems = [
     spesification: "tinggi batang 12cm, pot cantik",
     price: 15000,
     rate: 4.2,
+    types: [ItemType.new_item]
   ),
 
 ];
