@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       ],
         child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: MainPage(), //PaymentPage(transaction: Transaction(items : mockItems[0], users: mockUsers, quantity: 2)),
+        home: SignInPage(), //PaymentPage(transaction: Transaction(items : mockItems[0], users: mockUsers, quantity: 2)),
         //SignInPage(),
       ),
     );

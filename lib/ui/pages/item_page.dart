@@ -37,8 +37,8 @@ class _ItemPageState extends State<ItemPage> {
                     height: 50,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      image: DecorationImage(image: NetworkImage(
-                        'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80'),
+                      // ignore: deprecated_member_use
+                      image: DecorationImage(image: NetworkImage((context.bloc<UserCubit>().state as UserLoaded).users.picturePath),
                         fit: BoxFit.cover
                       )
                     ),
@@ -59,7 +59,21 @@ class _ItemPageState extends State<ItemPage> {
                         left: (e == mockItems.first) ? defaultMargin : 0,
                         right: defaultMargin,
                       ),
-                      child: ItemCard(e),
+                      child: GestureDetector(
+                        onTap: (){
+                          Get.to(ItemDetailPage(
+                            transaction: Transaction(
+                              items: e,
+                              // ignore: deprecated_member_use
+                              users: (context.bloc<UserCubit>().state as UserLoaded).users
+                            ),
+                            onBackButtonPressed: () {
+                              Get.back();
+                            },
+                          ));
+                        },
+                        
+                        child: ItemCard(e)),
                     )).toList(),
                   ),
                 ],

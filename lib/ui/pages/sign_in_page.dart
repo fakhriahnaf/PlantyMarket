@@ -80,15 +80,17 @@ class _SignInPageState extends State<SignInPage> {
                  await context.bloc<UserCubit>().signIn(
                           emailController.text, passwordController.text);
                       // ignore: deprecated_member_use
-                      UserState state = context.bloc<UserCubit>().state;
+                  UserState state = context.bloc<UserCubit>().state;
+
                   if(state is UserLoaded) {
                     // ignore: deprecated_member_use
                     context.bloc<ItemCubit>().getItem();
                     // ignore: deprecated_member_use
                     context.bloc<TransactionCubit>().getTransactions();
+                    Get.to(MainPage());
                   } else {
                     Get.snackbar(" ", " ", 
-                    backgroundColor: "D9435SE".toColor(),
+                    backgroundColor: "D9435E".toColor(),
                     icon: Icon(MdiIcons.closeCircleMultipleOutline, color: Colors.white),
                     titleText: Text("sign In Failed",style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600)),
                     messageText: Text((state as UserLoadingFailed).message,
