@@ -70,7 +70,7 @@ class IllustrationPage extends StatelessWidget {
             width: 200,
             height: 45,
             child: RaisedButton(
-              onPressed: buttonTap1,
+              onPressed: buttonTap2,
               color: '8D92A3'.toColor(),
               elevation: 0,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)

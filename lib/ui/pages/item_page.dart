@@ -50,33 +50,35 @@ class _ItemPageState extends State<ItemPage> {
             Container(
               height: 258,
               width: double.infinity,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  Row(
-                    children: mockItems.map((e) => Padding(
-                      padding: EdgeInsets.only(
-                        left: (e == mockItems.first) ? defaultMargin : 0,
-                        right: defaultMargin,
-                      ),
-                      child: GestureDetector(
-                        onTap: (){
-                          Get.to(ItemDetailPage(
-                            transaction: Transaction(
-                              items: e,
-                              // ignore: deprecated_member_use
-                              users: (context.bloc<UserCubit>().state as UserLoaded).users
-                            ),
-                            onBackButtonPressed: () {
-                              Get.back();
-                            },
-                          ));
-                        },
-                        
-                        child: ItemCard(e)),
-                    )).toList(),
-                  ),
-                ],
+              child: BlocBuilder<ItemCubit, ItemState>(
+                              builder :(_, state) => (state is ItemLoaded) ? ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    Row(
+                      children: state.items.map((e) => Padding(
+                        padding: EdgeInsets.only(
+                          left: (e == mockItems.first) ? defaultMargin : 0,
+                          right: defaultMargin,
+                        ),
+                        child: GestureDetector(
+                          onTap: (){
+                            Get.to(ItemDetailPage(
+                              transaction: Transaction(
+                                items: e,
+                                // ignore: deprecated_member_use
+                                users: (context.bloc<UserCubit>().state as UserLoaded).users
+                              ),
+                              onBackButtonPressed: () {
+                                Get.back();
+                              },
+                            ));
+                          },
+                          
+                          child: ItemCard(e)),
+                      )).toList(),
+                    ),
+                  ],
+                ) : Center(child: loadingIndicator),
               )
             ),
             ///LIST OF ITEM(TABS)
@@ -94,25 +96,33 @@ class _ItemPageState extends State<ItemPage> {
                       });
                     },
                   ),
+                  // state.items.where((element) => element.types.contains(element));
                   SizedBox(
                    height: 16, 
                   ),
-                  Builder(
-                    builder: (_){
-                      List<Items> items = (selectedIndex == 0 ) 
-                      ? mockItems 
-                      : (selectedIndex == 1) 
-                      ? [] 
-                      : [];
-                      return Column(
-                        children: items.map((e) => Padding(
-                          padding: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
+                  BlocBuilder<ItemCubit, ItemState>(
+                    builder: (_, state) { 
+                      if (state is ItemLoaded){
+                        List<Items> items = state.items.where((element) => element.types.contains((selectedIndex == 0 ) 
+                        ? ItemType.new_item
+                        : (selectedIndex == 1) 
+                        ? ItemType.popular 
+                        : ItemType.recommended)).toList();
+                      
+                        return Column(
+                          children: items.map((e) => Padding(
+                            padding: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
 
-                          child: ListItem(items:e, itemWidth: listItemWidth),
-                        )).toList(),
+                            child: ListItem(items:e, itemWidth: listItemWidth),
+                          )).toList(),
+                        );
+                    } else {
+                      return Center(
+                        child: loadingIndicator,
                       );
-                    },
-                  ),
+                    }
+                    }
+                    ),
                 ],
               ),
             ),

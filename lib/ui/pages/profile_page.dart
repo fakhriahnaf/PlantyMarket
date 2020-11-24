@@ -37,6 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 image: NetworkImage((context
+                                        // ignore: deprecated_member_use
                                         .bloc<UserCubit>()
                                         .state as UserLoaded)
                                     .users
@@ -67,7 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Column(
                 children: [
                   CustomTabBar(
-                    titles: ["Account", "FoodMarket"],
+                    titles: ["Account", "PlantMarket"],
                     selectedIndex: selectedIndex,
                     onTap: (index) {
                       setState(() {

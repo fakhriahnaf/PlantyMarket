@@ -197,7 +197,14 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                               width: 163,
                               height: 45,
                               child: RaisedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.to(PaymentPage(
+                                    transaction: widget.transaction.copyWith(
+                                    quantity: quantity,
+                                    total : quantity * widget.transaction.items.price
+                                    )
+                                  ));
+                                },
                                 color: mainColor,
                                 elevation: 0,
                                 shape: RoundedRectangleBorder(
