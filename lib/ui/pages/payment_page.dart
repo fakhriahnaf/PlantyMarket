@@ -336,7 +336,7 @@ class _PaymentPageState extends State<PaymentPage> {
                         isLoading = true;
                       });
 
-                      bool result = await context
+                      String paymentURL = await context
                           // ignore: deprecated_member_use
                           .bloc<TransactionCubit>()
                           .submitTransaction(widget.transaction.copyWith(
@@ -344,8 +344,8 @@ class _PaymentPageState extends State<PaymentPage> {
                               total: (widget.transaction.total * 1.1).toInt() +
                                   50000));
 
-                      if (result == true) {
-                        Get.to(SuccessOrderPage());
+                      if (paymentURL != null) {
+                        Get.to(PaymentMethodePage(paymentURL));
                       } else {
                         setState(() {
                           isLoading = false;

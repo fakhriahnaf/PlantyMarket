@@ -56,6 +56,7 @@ class _SignInPageState extends State<SignInPage> {
               border: Border.all(color: Colors.black)
             ),
             child: TextField(
+              obscureText: true,
               controller: passwordController,
               decoration: InputDecoration(
                 border: InputBorder.none,
@@ -76,6 +77,7 @@ class _SignInPageState extends State<SignInPage> {
                 setState(() {
                   isLoading = true;
                 });
+                ///penghubung ke backend database untuk menyimpan data
                  // ignore: deprecated_member_use
                  await context.bloc<UserCubit>().signIn(
                           emailController.text, passwordController.text);

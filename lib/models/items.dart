@@ -23,6 +23,31 @@ class Items extends Equatable {
       this.types = const []
     }
   );
+  factory Items.fromJson(Map<String, dynamic>data)=> Items(
+    id: data['id'],
+    picturePath: data['picturePath'],
+    name: data['name'],
+    description: data['description'],
+    spesification: data['spesification'],
+    price: data['price'],
+    rate: (data['rate'] as num).toDouble(),
+    types: data['types'].toString().split(',').map((e) {
+      switch (e) {
+        case 'recommended':
+        return ItemType.recommended;
+        break;
+
+        case 'popular':
+        return ItemType.popular;
+        break;
+
+        default :
+        return ItemType.new_item;
+        break;
+      }
+    }).toList()
+
+  );
 
   @override
   // TODO: implement props

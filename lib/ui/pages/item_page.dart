@@ -57,7 +57,8 @@ class _ItemPageState extends State<ItemPage> {
                     Row(
                       children: state.items.map((e) => Padding(
                         padding: EdgeInsets.only(
-                          left: (e == mockItems.first) ? defaultMargin : 0,
+                          left: (e == state.items.first) ? defaultMargin : 0,
+                          //left: (e == mockItems.first) ? defaultMargin : 0,
                           right: defaultMargin,
                         ),
                         child: GestureDetector(

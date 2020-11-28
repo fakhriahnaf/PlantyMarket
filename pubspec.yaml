@@ -26,13 +26,15 @@ dependencies:
   cupertino_icons: ^1.0.0
   equatable: ^1.2.5
   flutter_bloc: ^6.1.1
-  # flutter_bloc_devtools: ^0.1.1
   flutter_spinkit: ^4.1.2+1
   get: ^3.17.1
   google_fonts: ^1.1.1
+  http: ^0.12.2
+  image_picker: ^0.6.7+14
   intl: ^0.16.1
   material_design_icons_flutter: ^4.0.5755
   supercharged: ^1.11.1
+  url_launcher: ^5.7.10
 
 dev_dependencies:
   flutter_test:

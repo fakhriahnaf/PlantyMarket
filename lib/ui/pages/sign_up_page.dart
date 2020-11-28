@@ -6,11 +6,15 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  @override
-  Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
+  Users users;
+  File pictureFile;
+
+  TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
     TextEditingController nameController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
     bool isLoading = false;
     return GeneralPage(
       title: 'Register',
@@ -20,22 +24,38 @@ class _SignUpPageState extends State<SignUpPage> {
       },
       child: Column(
         children: [
-          Container(
-            width: 110,
-            height: 110,
-            margin: EdgeInsets.only(top:26),
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage('assets/photo_border.png'))
-            ),
+          GestureDetector(
+            onTap: () async {
+              PickedFile pickedFile =
+                  await ImagePicker().getImage(source: ImageSource.camera);
+              if (pickedFile != null) {
+                pictureFile = File(pickedFile.path);
+                setState(() {});
+              }
+            },
             child: Container(
+              width: 110,
+              height: 110,
+              margin: EdgeInsets.only(top: 26),
+              padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                shape:BoxShape.circle,
-                image: DecorationImage(
-                  image: NetworkImage('https://images.unsplash.com/photo-1605405809413-635a61f3d40a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80'),
-                    fit: BoxFit.cover
-                ),
-              )
+                  image: DecorationImage(
+                      image: AssetImage('assets/photo_border.png'))),
+              child: (pictureFile != null)
+                  ? Container(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              image: FileImage(pictureFile),
+                              fit: BoxFit.cover)),
+                    )
+                  : Container(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              image: AssetImage('assets/photo.png'),
+                              fit: BoxFit.cover)),
+                    ),
             ),
           ),
           //buat kolom nama
@@ -86,6 +106,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
           ),
+
           //Buat bikin password
           Container(
             width: double.infinity,
@@ -102,6 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
               border: Border.all(color: Colors.black)
             ),
             child: TextField(
+              obscureText: true,
               controller: passwordController,
               decoration: InputDecoration(
                 border: InputBorder.none,
@@ -120,7 +142,12 @@ class _SignUpPageState extends State<SignUpPage> {
               size:45,
               color:mainColor,
             ) : RaisedButton(onPressed: () {
-              Get.to(AddressRegisterPage());
+              Get.to(AddressRegisterPage(
+                Users(
+                  name: nameController.text,
+                  email: emailController.text
+                ), passwordController.text,pictureFile
+              ));
             }, 
             elevation :0,
             shape: RoundedRectangleBorder(

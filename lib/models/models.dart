@@ -1,3 +1,4 @@
+import 'package:PlantyMarket/cubit/transaction_cubit.dart';
 import 'package:equatable/equatable.dart';
 
 part 'items.dart';
